@@ -37,7 +37,7 @@ namespace GarcomAnotacoes.Configurations
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Pedido}/{action=Index}/{id?}");
             });
 
             return app;
