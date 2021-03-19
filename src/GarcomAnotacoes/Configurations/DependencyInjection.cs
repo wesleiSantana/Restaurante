@@ -23,6 +23,9 @@ namespace GarcomAnotacoes.Configurations
 
         public static IServiceCollection AddDependencies(this IServiceCollection services)
         {
+
+            services.AddScoped<Context>();
+
             // repositries
             services.AddScoped<ICopaRepository, CopaRepository>();
             services.AddScoped<IPedidoRepository, PedidoRepository>();
