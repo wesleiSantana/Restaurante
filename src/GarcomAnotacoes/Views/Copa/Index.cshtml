@@ -1,0 +1,44 @@
+﻿@model IEnumerable<GarcomAnotacoes.Models.Copa>
+
+<section class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header text-center text-white text-uppercase bg-primary">
+                    <h3 class="m-0"> Copa  </h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col"> # </th>
+                                <th scope="col"> Mesa </th>
+                                <th scope="col"> Copa </th>
+                                <th scope="col"> Nome Da Bebida </th>
+                                <th scope="col"> Qtd Bebidas </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var copa in Model)
+                            {
+                                foreach (var pedido in copa.Pedidos)
+                                {
+                                    if (pedido.Ativo)
+                                    {
+                                        <tr>
+                                            <td> @pedido.Id </td>
+                                            <td> @pedido.NumeDaMesa </td>
+                                            <td> @copa.Nome </td>
+                                            <td> @pedido.NomeDaBabida</td>
+                                            <td> @pedido.QuantidaDeBebidas</td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

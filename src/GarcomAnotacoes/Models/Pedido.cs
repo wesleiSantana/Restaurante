@@ -12,9 +12,9 @@ namespace GarcomAnotacoes.Models
         public int QuantidadeDePratos { get; set; }
 
         // 1 : N => Cozinha : Pedidos
-        public Copa Copa { get; set; }      
+        public virtual Copa Copa { get; set; }      
         public long CopaId { get; set; }
         public long CozinhaId { get; set; }
-        public Cozinha Cozinha { get; set; }
+        public virtual Cozinha Cozinha { get; set; }
     }
 }

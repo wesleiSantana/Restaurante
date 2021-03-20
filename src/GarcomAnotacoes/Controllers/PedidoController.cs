@@ -1,10 +1,10 @@
-﻿using GarcomAnotacoes.Interfaces.Repositories;
-using GarcomAnotacoes.Interfaces.Services;
+﻿using System.Threading.Tasks;
 using GarcomAnotacoes.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using GarcomAnotacoes.Interfaces.Services;
+using GarcomAnotacoes.Interfaces.Repositories;
 
 namespace GarcomAnotacoes.Controllers
 {
@@ -14,14 +14,16 @@ namespace GarcomAnotacoes.Controllers
         private readonly IPedidoService _pedidoService;
         private readonly ICopaRepository _copaRepository;
         private readonly ICozinhaService _cozinhaService;
-        private readonly ICozinhaRepository _cozinhaRepository;
+        private readonly IPedidoRepository _pedidoRepository;
+        private readonly ICozinhaRepository _cozinhaRepository;      
 
-        public PedidoController(ICopaService copaService, IPedidoService pedidoService, ICozinhaService cozinhaService, ICozinhaRepository cozinhaRepository, ICopaRepository copaRepository)
+        public PedidoController(ICopaService copaService, IPedidoService pedidoService, ICopaRepository copaRepository, ICozinhaService cozinhaService, IPedidoRepository pedidoRepository, ICozinhaRepository cozinhaRepository)
         {
             _copaService = copaService;
             _pedidoService = pedidoService;
-            _cozinhaService = cozinhaService;
             _copaRepository = copaRepository;
+            _cozinhaService = cozinhaService;
+            _pedidoRepository = pedidoRepository;
             _cozinhaRepository = cozinhaRepository;
         }
 
@@ -37,6 +39,7 @@ namespace GarcomAnotacoes.Controllers
 
             ViewBag.copas = copas;
             ViewBag.cozinhas = cozinhas;
+            ViewBag.pedidos = await _pedidoRepository.Select();
 
             return View();
         }
@@ -52,6 +55,23 @@ namespace GarcomAnotacoes.Controllers
             if (await _cozinhaRepository.Select((long)pedido.CozinhaId) == null) return RedirectToAction(nameof(Index));
 
             if (!await _pedidoService.Insert(pedido)) return RedirectToAction(nameof(Index));  
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AlterarPedido(long id)
+        {
+            if (!ModelState.IsValid) return RedirectToAction(nameof(Index));
+
+            var result = await _pedidoRepository.Select(id);
+
+            if(result == null) return RedirectToAction(nameof(Index));
+
+            result.Ativo = false;
+
+            if (!await _pedidoService.Update(result)) return RedirectToAction(nameof(Index));
 
             return RedirectToAction(nameof(Index));
         }

@@ -5,7 +5,7 @@ namespace GarcomAnotacoes.Models
     public class Copa : Entity
     {
         public string Nome { get; set; }
-        public ICollection<Pedido> Pedidos { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 
 }

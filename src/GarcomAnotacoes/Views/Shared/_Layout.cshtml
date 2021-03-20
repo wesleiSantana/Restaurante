@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - Restaurante </title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -20,14 +21,20 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Pedido" asp-action="Index">Realize seu pedido </a>
-                        </li>                       
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cozinha" asp-action="Index">Cozinha </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Copa" asp-action="Index">Copa </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -40,6 +47,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/fontawesome/js/fontawesome-iconpicker.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

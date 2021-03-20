@@ -1,11 +1,11 @@
 ﻿@model GarcomAnotacoes.Models.Pedido;
 
-<section class="container">
-    <div class="row justify-content-center">
-        <div class="col-8">
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-5">
             <form asp-controller="Pedido" asp-action="CadastrarPedido" asp-antiforgery="true" method="post">
                 <div class="card">
-                    <div class="card-header text-center text-white text-uppercase bg-success">
+                    <div class="card-header text-center text-white text-uppercase bg-primary">
                         <h3 class="m-0"> Anotações  </h3>
                     </div>
                     <div class="card-body">
@@ -74,7 +74,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <select class="form-control" asp-for="@Model.CozinhaId" asp-items="@ViewBag.cozinhas">
-                                        <option selected> Escolhar Uma Cozinha</option>                                       
+                                        <option selected> Escolhar Uma Cozinha</option>
                                     </select>
                                     <span asp-validation-for="@Model.CozinhaId" class="text-danger"></span>
                                 </div>
@@ -92,10 +92,54 @@
                     </div>
 
                     <div class="card-footer">
-                        <button class="btn btn-success"> Enviar </button>
+                        <button class="btn btn-primary"> Enviar </button>
                     </div>
                 </div>
             </form>
+        </div>
+        @**@
+        <div class="col-7">
+            <table class="table table-striped table-bordered text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"> # </th>
+                        <th scope="col"> Cozinha </th>
+                        <th scope="col"> Prato </th>
+                        <th scope="col"> Qtd  </th>
+
+                        <th scope="col"> Copa </th>
+                        <th scope="col"> bebidao </th>
+                        <th scope="col"> Qtd </th>
+
+                        <th scope="col"> Desativar </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in ViewBag.pedidos)
+                    {
+                        if (pedido.Ativo)
+                        {
+                            <tr>
+                                <th> @pedido.Id </th>
+                                <th> @pedido.CozinhaId </th>
+                                <td> @pedido.NomeDoPrato</td>
+                                <td> @pedido.QuantidadeDePratos</td>
+
+                                <th> @pedido.CopaId </th>
+                                <td> @pedido.NomeDaBabida</td>
+                                <td> @pedido.QuantidaDeBebidas</td>
+
+                                <td>
+                                    <form asp-controller="Pedido" asp-action="AlterarPedido" asp-antiforgery="true" method="post">
+                                        <input type="hidden" name="id" value="@pedido.Id" />
+                                        <button class="btn btn-primary"> <i class="fas fa-pen-square"></i> </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
