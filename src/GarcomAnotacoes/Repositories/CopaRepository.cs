@@ -7,6 +7,6 @@ namespace GarcomAnotacoes.Repositories
     public class CopaRepository : Repository<Copa>, ICopaRepository
     {
         public CopaRepository(Context context) : base(context)
-        { }
+        { }       
     }
 }

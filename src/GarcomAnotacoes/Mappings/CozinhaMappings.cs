@@ -12,7 +12,7 @@ namespace GarcomAnotacoes.Mappings
                  .ToTable("Cozinhas");
 
             builder
-                .HasKey(cozinha => cozinha.Id);
+                .HasKey(cozinha => cozinha.Id);           
 
         }
     }

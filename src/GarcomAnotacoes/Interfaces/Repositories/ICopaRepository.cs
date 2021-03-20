@@ -3,6 +3,6 @@
 namespace GarcomAnotacoes.Interfaces.Repositories
 {
     public interface ICopaRepository : IRepository<Copa>
-    {
+    {      
     }
 }

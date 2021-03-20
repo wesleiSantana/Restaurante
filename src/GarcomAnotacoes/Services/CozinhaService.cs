@@ -1,10 +1,7 @@
-﻿using GarcomAnotacoes.Interfaces.Repositories;
-using GarcomAnotacoes.Interfaces.Services;
-using GarcomAnotacoes.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using GarcomAnotacoes.Models;
 using System.Threading.Tasks;
+using GarcomAnotacoes.Interfaces.Services;
+using GarcomAnotacoes.Interfaces.Repositories;
 
 namespace GarcomAnotacoes.Services
 {

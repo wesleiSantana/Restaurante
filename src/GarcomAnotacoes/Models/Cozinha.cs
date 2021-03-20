@@ -4,7 +4,7 @@ namespace GarcomAnotacoes.Models
 {
     public class Cozinha : Entity
     {
-        public long PedidoId { get; set; }
-        public IEnumerable<Pedido> Pedido { get; set; }
+        public string Nome { get; set; }
+        public ICollection<Pedido> Pedidos { get; set; } 
     }
 }

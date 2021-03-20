@@ -12,7 +12,7 @@ namespace GarcomAnotacoes.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PedidoId = table.Column<long>(nullable: false)
+                    Nome = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,7 +25,7 @@ namespace GarcomAnotacoes.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PedidoId = table.Column<long>(nullable: false)
+                    Nome = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -38,14 +38,15 @@ namespace GarcomAnotacoes.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Ativo = table.Column<bool>(nullable: false),
                     Mesa = table.Column<int>(type: "INT", nullable: false),
                     Prato = table.Column<string>(type: "VARCHAR(100)", nullable: true),
                     Bebida = table.Column<string>(type: "VARCHAR(100)", nullable: true),
                     Cliente = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     QtdBebidas = table.Column<int>(name: "Qtd Bebidas", type: "INT", nullable: false),
                     QtdPratos = table.Column<int>(name: "Qtd Pratos", type: "INT", nullable: false),
-                    CopaId = table.Column<long>(nullable: true),
-                    CozinhaId = table.Column<long>(nullable: true)
+                    CopaId = table.Column<long>(nullable: false),
+                    CozinhaId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,13 +56,13 @@ namespace GarcomAnotacoes.Migrations
                         column: x => x.CopaId,
                         principalTable: "Copas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Pedidos_Cozinhas_CozinhaId",
                         column: x => x.CozinhaId,
                         principalTable: "Cozinhas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

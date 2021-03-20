@@ -1,2 +1,103 @@
-﻿
-<h2>Restaurante</h2>
+﻿@model GarcomAnotacoes.Models.Pedido;
+
+<section class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form asp-controller="Pedido" asp-action="CadastrarPedido" asp-antiforgery="true" method="post">
+                <div class="card">
+                    <div class="card-header text-center text-white text-uppercase bg-success">
+                        <h3 class="m-0"> Anotações  </h3>
+                    </div>
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <input type="text" asp-for="NomeDocliente" class="form-control" placeholder="Nome do cliente" />
+                                    <span asp-validation-for="NomeDocliente" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <input type="text" asp-for="NumeDaMesa" class="form-control" placeholder="mesa" />
+                                    <span asp-validation-for="NumeDaMesa" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <select class="form-control" asp-for="NomeDoPrato">
+                                        <option value="Atum ao forno"> Atum ao forno </option>
+                                        <option value="Coxa de frango com ervas"> Coxa de frango com ervas </option>
+                                        <option value="Estrogonofe de carne"> Estrogonofe de carne </option>
+                                        <option value="Macarrão com molho de requeijão e maionese"> Macarrão com molho de requeijão e maionese </option>
+                                        <option value="Selecionar um  prato"> Selecionar um  prato </option>
+                                        <option value="Salada Caesar"> Salada Caesar </option>
+                                    </select>
+                                    <span asp-validation-for="NomeDoPrato" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <input type="number" asp-for="QuantidadeDePratos" class="form-control" placeholder="Qdt" />
+                                    <span asp-validation-for="QuantidadeDePratos" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <select class="form-control" asp-for="NomeDaBabida">
+                                        <option value="Coca cola"> Coca cola </option>
+                                        <option value="Fanta"> Fanta </option>
+                                        <option value="Guarana antarctica"> Guarana antarctica </option>
+                                        <option value="Suco de laranja"> Suco de laranja </option>
+                                        <option value="Suco de limão"> Suco de limão </option>
+                                    </select>
+                                    <span asp-validation-for="NomeDaBabida" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <input type="number" asp-for="QuantidaDeBebidas" class="form-control" placeholder="Qdt" />
+                                    <span asp-validation-for="QuantidaDeBebidas" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <select class="form-control" asp-for="@Model.CozinhaId" asp-items="@ViewBag.cozinhas">
+                                        <option selected> Escolhar Uma Cozinha</option>                                       
+                                    </select>
+                                    <span asp-validation-for="@Model.CozinhaId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <select class="form-control" asp-for="@Model.CopaId" asp-items="@ViewBag.copas">
+                                        <option selected> Escolhar Uma Copa </option>
+                                    </select>
+                                    <span asp-validation-for="@Model.CopaId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="btn btn-success"> Enviar </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+

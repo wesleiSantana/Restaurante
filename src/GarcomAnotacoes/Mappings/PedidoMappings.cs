@@ -43,7 +43,7 @@ namespace GarcomAnotacoes.Mappings
             builder.Property(pedido => pedido.QuantidaDeBebidas)
                 .HasColumnType("INT")
                 .HasColumnName("Qtd Bebidas");
-
+                     
         }
     }
 }
